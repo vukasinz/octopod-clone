@@ -5,11 +5,14 @@ public class player_mov : MonoBehaviour
      Rigidbody2D rb;
     public int direction;
     public int speed = 10;
+    public float jumpForce = 500f;
     public bool isGrounded;
+    public Animator anim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = this.GetComponentInChildren<Animator>();
     }
 
     // U
@@ -21,14 +24,17 @@ public class player_mov : MonoBehaviour
             isGrounded = true;
         else
             isGrounded = false;
-        if (Input.GetKey(KeyCode.Space) && isGrounded)
-        {
-            rb.AddForce(Vector2.up * 500f, ForceMode2D.Force);
-        }
+       
     }
     void Update()
     {
         direction = (int)Input.GetAxisRaw("Horizontal");
-      
+        if(direction == 0)
+            anim.SetFloat("directionPar", 0);
+        else
+            anim.SetFloat("directionPar", 1);
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
     }
 }
