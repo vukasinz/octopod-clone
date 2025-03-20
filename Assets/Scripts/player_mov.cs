@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
@@ -9,7 +10,7 @@ public class player_mov : MonoBehaviour
     public int speed = 10;
     public float jumpForce = 500f;
     public float dashTimer = 3f;
-    float dashProgress = 0.8f;
+    float dashProgress = 0.7f;
     public bool isGrounded;
     public bool canDash = true;
     public bool isDashing = false;
@@ -29,8 +30,9 @@ public class player_mov : MonoBehaviour
                 dashProgress -= Time.deltaTime;
             if (dashProgress <= 0)
             {
-                dashProgress = 0.8f;
+                dashProgress = 0.7f;
                 isDashing = false;
+                rb.linearVelocityX = 0;
             }
         }
     }
@@ -73,6 +75,15 @@ public class player_mov : MonoBehaviour
         else if(directionPar != 0 && isGrounded)
             anim.SetFloat("directionPar", 1);
     }
+   IEnumerator dashColor()
+    {
+       Color original = this.GetComponentInChildren<SpriteRenderer>().color;
+        Color target = original;
+        target.a = 0.5f;
+        this.GetComponentInChildren<SpriteRenderer>().color = target;
+        yield return new WaitForSeconds(0.7f);
+        this.GetComponentInChildren<SpriteRenderer>().color = original;
+    }
    
     void Update()
     {
@@ -81,7 +92,10 @@ public class player_mov : MonoBehaviour
         direction = (int)Input.GetAxisRaw("Horizontal");
         if(!isDashing)
             Move();
-
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            anim.SetTrigger("isHitting");
+        }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             anim.SetTrigger("isJumping");
@@ -90,8 +104,12 @@ public class player_mov : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && canDash)
         {
             canDash = false;
-            rb.AddForce(new Vector2(direction * 300f,0), ForceMode2D.Force);
+            rb.AddForce(new Vector2(direction * 650f,0), ForceMode2D.Force);
             isDashing = true;
+            StartCoroutine("dashColor");
+
+            anim.SetTrigger("isDashing");
+
         }
     }
 }
