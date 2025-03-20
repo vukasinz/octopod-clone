@@ -645,7 +645,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1783986908
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -705,9 +705,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
+  directionPar: 0
   speed: 12
   jumpForce: 600
+  dashTimer: 3
   isGrounded: 0
+  canDash: 1
+  anim: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,12 +1,18 @@
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 public class player_mov : MonoBehaviour
 {
      Rigidbody2D rb;
     public int direction;
+    public int directionPar;
     public int speed = 10;
     public float jumpForce = 500f;
+    public float dashTimer = 3f;
+    float dashProgress = 0.8f;
     public bool isGrounded;
+    public bool canDash = true;
+    public bool isDashing = false;
     public Animator anim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,26 +21,77 @@ public class player_mov : MonoBehaviour
         anim = this.GetComponentInChildren<Animator>();
     }
 
-    // U
+    private void DashOnOff()
+    {
+        if (isDashing)
+        {
+            if (dashProgress > 0)
+                dashProgress -= Time.deltaTime;
+            if (dashProgress <= 0)
+            {
+                dashProgress = 0.8f;
+                isDashing = false;
+            }
+        }
+    }
     // pdate is called once per frame
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
+        if(!isDashing)
+            rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
+
         if (Mathf.Abs(rb.linearVelocityY) < 0.1f)
             isGrounded = true;
         else
             isGrounded = false;
-       
+      
     }
+    public void dashRegulator()
+    {
+        if (!canDash)
+        {
+            if (dashTimer > 0)
+                dashTimer -= Time.deltaTime;
+            if (dashTimer <= 0)
+            {
+                canDash = true;
+                dashTimer = 3f;
+                
+            }
+        }
+
+    }
+    void Move()
+    {
+        directionPar = direction;
+        if (direction == 1)
+            this.GetComponentInChildren<SpriteRenderer>().flipX = false;
+        else if (direction == -1)
+            this.GetComponentInChildren<SpriteRenderer>().flipX = true;
+        if (directionPar == 0)
+            anim.SetFloat("directionPar", 0);
+        else if(directionPar != 0 && isGrounded)
+            anim.SetFloat("directionPar", 1);
+    }
+   
     void Update()
     {
+        DashOnOff();
+        dashRegulator();
         direction = (int)Input.GetAxisRaw("Horizontal");
-        if(direction == 0)
-            anim.SetFloat("directionPar", 0);
-        else
-            anim.SetFloat("directionPar", 1);
+        if(!isDashing)
+            Move();
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            anim.SetTrigger("isJumping");
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
+        }
+        if (Input.GetKeyDown(KeyCode.Z) && canDash)
+        {
+            canDash = false;
+            rb.AddForce(new Vector2(direction * 300f,0), ForceMode2D.Force);
+            isDashing = true;
+        }
     }
 }
