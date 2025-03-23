@@ -4,12 +4,15 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class player_mov : MonoBehaviour
 {
-     Rigidbody2D rb;
+    public Rigidbody2D rb;
     public int direction;
     public int directionPar;
     public int speed = 10;
     public float jumpForce = 500f;
+    public float fallMultiplier = 3f;
+    public float lowJumpMultiplier = 2f;
     public float dashTimer = 3f;
+
     float dashProgress = 0.7f;
     public bool isGrounded;
     public bool canDash = true;
@@ -84,9 +87,20 @@ public class player_mov : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         this.GetComponentInChildren<SpriteRenderer>().color = original;
     }
-   
+   void BetterJump()
+    {
+        if (rb.linearVelocity.y < 0)
+        {
+            rb.linearVelocity += Vector2.up * (fallMultiplier - 1) * Time.deltaTime * Physics2D.gravity.y;
+        }
+        else if (rb.linearVelocity.y > 0 && !Input.GetButton("Jump")) 
+        {
+            rb.linearVelocity += Vector2.up * (lowJumpMultiplier - 1) * Time.deltaTime * Physics2D.gravity.y;
+        }
+    }
     void Update()
     {
+       BetterJump();
         DashOnOff();
         dashRegulator();
         direction = (int)Input.GetAxisRaw("Horizontal");
@@ -99,12 +113,13 @@ public class player_mov : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             anim.SetTrigger("isJumping");
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
+            rb.linearVelocity = Vector2.up * jumpForce;
         }
         if (Input.GetKeyDown(KeyCode.Z) && canDash)
         {
             canDash = false;
-            rb.AddForce(new Vector2(direction * 650f,0), ForceMode2D.Force);
+            rb.AddForce(new Vector2(direction * jumpForce,0), ForceMode2D.Force);
+          
             isDashing = true;
             StartCoroutine("dashColor");
 
