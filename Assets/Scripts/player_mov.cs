@@ -11,7 +11,6 @@ public class player_mov : MonoBehaviour
     public float jumpForce = 500f;
     public float fallMultiplier = 3f;
     public float lowJumpMultiplier = 2f;
-    public float dashTimer = 3f;
 
     float dashProgress = 0.7f;
     public bool isGrounded;
@@ -23,6 +22,28 @@ public class player_mov : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = this.GetComponentInChildren<Animator>();
+    }
+
+    // pdate is called once per frame
+    private void FixedUpdate()
+    {
+        if(!isDashing)
+            rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
+
+        if (Mathf.Abs(rb.linearVelocityY) < 0.1f)
+            isGrounded = true;
+        else
+            isGrounded = false;
+      
+    }
+    public void Dash()
+    {
+        rb.AddForce(new Vector2(direction * 200f, 0), ForceMode2D.Force);
+        
+        isDashing = true;
+        canDash = false;
+        anim.SetTrigger("isDashing");
+        StartCoroutine("dashColor");
     }
 
     private void DashOnOff()
@@ -39,32 +60,14 @@ public class player_mov : MonoBehaviour
             }
         }
     }
-    // pdate is called once per frame
-    private void FixedUpdate()
+    IEnumerator dashColor()
     {
-        if(!isDashing)
-            rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
-
-        if (Mathf.Abs(rb.linearVelocityY) < 0.1f)
-            isGrounded = true;
-        else
-            isGrounded = false;
-      
-    }
-    public void dashRegulator()
-    {
-        if (!canDash)
-        {
-            if (dashTimer > 0)
-                dashTimer -= Time.deltaTime;
-            if (dashTimer <= 0)
-            {
-                canDash = true;
-                dashTimer = 3f;
-                
-            }
-        }
-
+        Color original = this.GetComponentInChildren<SpriteRenderer>().color;
+        Color target = original;
+        target.a = 0.5f;
+        this.GetComponentInChildren<SpriteRenderer>().color = target;
+        yield return new WaitForSeconds(0.5f);
+        this.GetComponentInChildren<SpriteRenderer>().color = original;
     }
     void Move()
     {
@@ -78,15 +81,7 @@ public class player_mov : MonoBehaviour
         else if(directionPar != 0 && isGrounded)
             anim.SetFloat("directionPar", 1);
     }
-   IEnumerator dashColor()
-    {
-       Color original = this.GetComponentInChildren<SpriteRenderer>().color;
-        Color target = original;
-        target.a = 0.5f;
-        this.GetComponentInChildren<SpriteRenderer>().color = target;
-        yield return new WaitForSeconds(0.7f);
-        this.GetComponentInChildren<SpriteRenderer>().color = original;
-    }
+
    void BetterJump()
     {
         if (rb.linearVelocity.y < 0)
@@ -102,28 +97,20 @@ public class player_mov : MonoBehaviour
     {
        BetterJump();
         DashOnOff();
-        dashRegulator();
+        if (!canDash && isGrounded)
+            canDash = true;
         direction = (int)Input.GetAxisRaw("Horizontal");
         if(!isDashing)
             Move();
-        if(Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            anim.SetTrigger("isHitting");
-        }
+   
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
+        { 
             anim.SetTrigger("isJumping");
             rb.linearVelocity = Vector2.up * jumpForce;
         }
         if (Input.GetKeyDown(KeyCode.Z) && canDash)
         {
-            canDash = false;
-            rb.AddForce(new Vector2(direction * jumpForce,0), ForceMode2D.Force);
-          
-            isDashing = true;
-            StartCoroutine("dashColor");
-
-            anim.SetTrigger("isDashing");
+            Dash();
 
         }
     }
