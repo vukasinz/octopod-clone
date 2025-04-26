@@ -110,8 +110,12 @@ public class player_mov : MonoBehaviour
 
         if (isGrounded)
         {
-            _canDash = true;
             jumped = false;
+            if (!hit.collider.CompareTag("Platform"))
+                _canDash = true;
+
+            
+
         }
 
         WallSlide();

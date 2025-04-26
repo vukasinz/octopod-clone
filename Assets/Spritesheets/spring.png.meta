@@ -1,67 +1,40 @@
 fileFormatVersion: 2
-guid: 3dc2735fdba1cc8408039511b0af0e5a
+guid: 7d2ff88dc25cd4f4ba2c0725ebaac1f8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8845520073546799767
-    second: prepreke_0
+      213: 2836554479157175418
+    second: spring_0
   - first:
-      213: -9213008816962864774
-    second: prepreke_1
+      213: -1961900865478407530
+    second: spring_1
   - first:
-      213: 6679376029812988152
-    second: prepreke_2
+      213: -1043803572495411551
+    second: spring_2
   - first:
-      213: -8336278268312044864
-    second: prepreke_3
+      213: 8894096783880121468
+    second: spring_3
   - first:
-      213: -651427364423781446
-    second: prepreke_4
+      213: -4829262838393217585
+    second: spring_4
   - first:
-      213: -3123881532250669473
-    second: prepreke_5
+      213: 4840811263080545824
+    second: spring_5
   - first:
-      213: -4677802508177429039
-    second: prepreke_6
+      213: -6247491167440312221
+    second: spring_6
   - first:
-      213: 4167565127474836398
-    second: prepreke_7
+      213: 9096029146786726240
+    second: spring_7
   - first:
-      213: 1148795387968424187
-    second: prepreke_8
+      213: -6296511066638471527
+    second: spring_8
   - first:
-      213: 3150609199847728935
-    second: prepreke_9
+      213: -4100379551774953498
+    second: spring_9
   - first:
-      213: -2216449585539117571
-    second: prepreke_10
-  - first:
-      213: -7642270737916479644
-    second: prepreke_11
-  - first:
-      213: -1832153667188388078
-    second: prepreke_12
-  - first:
-      213: 8276485456218020419
-    second: prepreke_13
-  - first:
-      213: 7505191873140260798
-    second: prepreke_14
-  - first:
-      213: 8183105900458274206
-    second: prepreke_15
-  - first:
-      213: 4292915533322148060
-    second: prepreke_16
-  - first:
-      213: 7799516857157520529
-    second: prepreke_17
-  - first:
-      213: -6230602127298996294
-    second: prepreke_18
-  - first:
-      213: 2967078288181947644
-    second: prepreke_19
+      213: 3105173640372677624
+    second: spring_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -170,7 +143,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: prepreke_0
+      name: spring_0
       rect:
         serializedVersion: 2
         x: 0
@@ -178,25 +151,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 7, y: -4}
-        - {x: -7, y: -4}
-        - {x: -7, y: -8}
-        - {x: 7, y: -8}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: 965e7a2db566e3580800000000000000
-      internalID: -8845520073546799767
+      spriteID: a74e43425477d5720800000000000000
+      internalID: 2836554479157175418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_1
+      name: spring_1
       rect:
         serializedVersion: 2
         x: 16
@@ -204,28 +173,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 7, y: -4}
-        - {x: -7, y: -4}
-        - {x: -7, y: -8}
-        - {x: 7, y: -8}
-      - - {x: 7, y: -4}
-        - {x: 7, y: -4}
-        - {x: 7, y: -4}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: a79f2682b41d42080800000000000000
-      internalID: -9213008816962864774
+      spriteID: 69ac0a4be8de5c4e0800000000000000
+      internalID: -1961900865478407530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_2
+      name: spring_2
       rect:
         serializedVersion: 2
         x: 32
@@ -233,25 +195,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 6, y: -4}
-        - {x: -6, y: -4}
-        - {x: -6, y: -8}
-        - {x: 6, y: -8}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: 8f8134a3c19e1bc50800000000000000
-      internalID: 6679376029812988152
+      spriteID: 1a6902e5e2aa381f0800000000000000
+      internalID: -1043803572495411551
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_3
+      name: spring_3
       rect:
         serializedVersion: 2
         x: 48
@@ -259,25 +217,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 7, y: 8}
-        - {x: -7, y: 8}
-        - {x: -7, y: 4}
-        - {x: 7, y: 4}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: 0cab37c15179f4c80800000000000000
-      internalID: -8336278268312044864
+      spriteID: c7c6e19e6ed2e6b70800000000000000
+      internalID: 8894096783880121468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_4
+      name: spring_4
       rect:
         serializedVersion: 2
         x: 64
@@ -285,25 +239,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 7, y: 4}
-        - {x: 7, y: 8}
-        - {x: -7, y: 8}
-        - {x: -7, y: 4}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: ab33d82734aa5f6f0800000000000000
-      internalID: -651427364423781446
+      spriteID: fcdd396f8030bfcb0800000000000000
+      internalID: -4829262838393217585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_5
+      name: spring_5
       rect:
         serializedVersion: 2
         x: 80
@@ -311,25 +261,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 7, y: 4}
-        - {x: 7, y: 8}
-        - {x: -7, y: 8}
-        - {x: -7, y: 4}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: f5ebbc52c4eb5a4d0800000000000000
-      internalID: -3123881532250669473
+      spriteID: 02e30a032340e2340800000000000000
+      internalID: 4840811263080545824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_6
+      name: spring_6
       rect:
         serializedVersion: 2
         x: 96
@@ -337,25 +283,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 8, y: 7}
-        - {x: 4, y: 7}
-        - {x: 4, y: -7}
-        - {x: 8, y: -7}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: 1dd27a2276b151fb0800000000000000
-      internalID: -4677802508177429039
+      spriteID: 368645342e37c49a0800000000000000
+      internalID: -6247491167440312221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_7
+      name: spring_7
       rect:
         serializedVersion: 2
         x: 112
@@ -363,25 +305,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 8, y: 7}
-        - {x: 4, y: 7}
-        - {x: 4, y: -7}
-        - {x: 8, y: -7}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: ea37179176a26d930800000000000000
-      internalID: 4167565127474836398
+      spriteID: 06182d0f0569b3e70800000000000000
+      internalID: 9096029146786726240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_8
+      name: spring_8
       rect:
         serializedVersion: 2
         x: 128
@@ -389,25 +327,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 8, y: 7}
-        - {x: 4, y: 7}
-        - {x: 4, y: -7}
-        - {x: 8, y: -7}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: bf8077b915751ff00800000000000000
-      internalID: 1148795387968424187
+      spriteID: 99ea2b49b8c4e98a0800000000000000
+      internalID: -6296511066638471527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_9
+      name: spring_9
       rect:
         serializedVersion: 2
         x: 144
@@ -415,25 +349,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: -4, y: 7}
-        - {x: -8, y: 7}
-        - {x: -8, y: -7}
-        - {x: -4, y: -7}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: 7276007ef5639bb20800000000000000
-      internalID: 3150609199847728935
+      spriteID: 6efad2cb5868817c0800000000000000
+      internalID: -4100379551774953498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_10
+      name: spring_10
       rect:
         serializedVersion: 2
         x: 160
@@ -441,25 +371,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: -4, y: 7}
-        - {x: -8, y: 7}
-        - {x: -8, y: -7}
-        - {x: -4, y: -7}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: dfd016f58d69d31e0800000000000000
-      internalID: -2216449585539117571
+      spriteID: 8fbe15859fac71b20800000000000000
+      internalID: 3105173640372677624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_11
+      name: spring_11
       rect:
         serializedVersion: 2
         x: 176
@@ -467,25 +393,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: -4, y: 7}
-        - {x: -8, y: 7}
-        - {x: -8, y: -7}
-        - {x: -4, y: -7}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 467302d114331f590800000000000000
-      internalID: -7642270737916479644
+      spriteID: d07941ff7e97cdb43882a0ff023d92be
+      internalID: -1181462575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prepreke_12
+      name: spring_12
       rect:
         serializedVersion: 2
         x: 192
@@ -493,15 +415,15 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21f8e4562f1e296e0800000000000000
-      internalID: -1832153667188388078
+      spriteID: 19be06d3fa6084b46a7998e12661ca9b
+      internalID: -2061736162
       vertices: []
       indices: 
       edges: []
@@ -510,7 +432,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d3d55977f11584c4a9c0faf3a5c508ca
+    spriteID: c4927c8933ca64546a82a090ad4fad76
     internalID: 0
     vertices: []
     indices: 
@@ -520,19 +442,19 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      prepreke_0: -8845520073546799767
-      prepreke_1: -9213008816962864774
-      prepreke_10: -2216449585539117571
-      prepreke_11: -7642270737916479644
-      prepreke_12: -1832153667188388078
-      prepreke_2: 6679376029812988152
-      prepreke_3: -8336278268312044864
-      prepreke_4: -651427364423781446
-      prepreke_5: -3123881532250669473
-      prepreke_6: -4677802508177429039
-      prepreke_7: 4167565127474836398
-      prepreke_8: 1148795387968424187
-      prepreke_9: 3150609199847728935
+      spring_0: 2836554479157175418
+      spring_1: -1961900865478407530
+      spring_10: 3105173640372677624
+      spring_11: -1181462575
+      spring_12: -2061736162
+      spring_2: -1043803572495411551
+      spring_3: 8894096783880121468
+      spring_4: -4829262838393217585
+      spring_5: 4840811263080545824
+      spring_6: -6247491167440312221
+      spring_7: 9096029146786726240
+      spring_8: -6296511066638471527
+      spring_9: -4100379551774953498
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

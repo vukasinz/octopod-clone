@@ -724,6 +724,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: mono_27
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6b72d71191c45f46b1bafa4014102a3
+      internalID: 506401955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -758,6 +780,7 @@ TextureImporter:
       mono_24: -2049477818
       mono_25: -1562396242
       mono_26: -1169470211
+      mono_27: 506401955
       mono_3: 742127554
       mono_4: -614985423
       mono_5: -1707689628

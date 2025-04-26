@@ -6,11 +6,9 @@ using UnityEngine.SceneManagement;
 public class traps : MonoBehaviour
 {
     public GameObject player_prefab;
-    public GameObject Camera;
     GameObject last_player;
     GameObject player;
-    public Transform last_checkpoint;
-    
+    public static Transform last_checkpoint;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -25,7 +23,8 @@ public class traps : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (collision.gameObject.CompareTag("Player"))
         {
             switch(trapType)
             {
@@ -48,37 +47,29 @@ public class traps : MonoBehaviour
         //kamera se vrati nazad igrac padne odozgo i tek tada moze da se kontrolise.
 
     }
-    private IEnumerator MoveCameraToCheckpoint()
+    public void vrati()
     {
-
-        Vector3 startPosition = Camera.transform.position;
-        Vector3 targetPosition = last_checkpoint.position;
-        float elapsedTime = 0;
-        while (elapsedTime < 1)
+        foreach (GameObject platforms in GameObject.FindGameObjectsWithTag("Platform"))
         {
-            elapsedTime += Time.deltaTime * 6f;
-            Camera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime);
-            yield return null; 
+            platforms.GetComponent<platform_shaker>().vratiPlatforme();
         }
-        Camera.transform.position = targetPosition;
     }
     IEnumerator SpawnAnotherPlayer()
     {
+        vrati();
         last_player = player;
         last_player.GetComponent<player_mov>().enabled = false;
         last_player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-        player = Instantiate(player_prefab, new Vector2(last_checkpoint.position.x,last_checkpoint.position.y), Quaternion.identity,null);
+        player = Instantiate(player_prefab, new Vector2(last_checkpoint.position.x, last_checkpoint.position.y), Quaternion.identity, null);
         last_player.GetComponentInChildren<Animator>().SetTrigger("isDead");
         last_player.transform.GetChild(0).AddComponent<Rigidbody2D>();
         last_player.transform.GetChild(0).GetComponent<Rigidbody2D>().gravityScale = 4;
         last_player.transform.GetChild(0).transform.parent = null;
-       // Camera.transform.parent = null;
-        Destroy(last_player);
         player.GetComponent<player_mov>().enabled = false;
 
+        Destroy(last_player);
         yield return new WaitForSeconds(1f);
         player.GetComponent<player_mov>().enabled = true;
-       // Camera.transform.SetParent(player.transform);
 
     }
 
