@@ -8,9 +8,11 @@ public class traps : MonoBehaviour
     public GameObject player_prefab;
     GameObject last_player;
     GameObject player;
-    public static Transform last_checkpoint;
+    public GameObject prvi_checkpoint;
+    [SerializeField] public static Transform last_checkpoint;
     private void Start()
     {
+        last_checkpoint = prvi_checkpoint.transform;
         player = GameObject.FindGameObjectWithTag("Player");
         
     }
@@ -56,6 +58,8 @@ public class traps : MonoBehaviour
     }
     IEnumerator SpawnAnotherPlayer()
     {
+        GameObject.FindGameObjectWithTag("wall_slide").GetComponent<wall_slide>().isWalled = false;
+        
         vrati();
         last_player = player;
         last_player.GetComponent<player_mov>().enabled = false;
@@ -66,7 +70,6 @@ public class traps : MonoBehaviour
         last_player.transform.GetChild(0).GetComponent<Rigidbody2D>().gravityScale = 4;
         last_player.transform.GetChild(0).transform.parent = null;
         player.GetComponent<player_mov>().enabled = false;
-
         Destroy(last_player);
         yield return new WaitForSeconds(1f);
         player.GetComponent<player_mov>().enabled = true;
