@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - checkpoints
   - traps
+  - meduza
   layers:
   - Default
   - TransparentFX

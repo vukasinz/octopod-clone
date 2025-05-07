@@ -53,7 +53,13 @@ public class traps : MonoBehaviour
     {
         foreach (GameObject platforms in GameObject.FindGameObjectsWithTag("Platform"))
         {
-            platforms.GetComponent<platform_shaker>().vratiPlatforme();
+            if(platforms.GetComponent<platform_shaker>() != null)
+                platforms.GetComponent<platform_shaker>().vratiPlatforme();
+        }
+        foreach (GameObject meduza in GameObject.FindGameObjectsWithTag("meduza"))
+        {
+            meduza.GetComponent<meduza_controller>().vrati();
+
         }
     }
     IEnumerator SpawnAnotherPlayer()

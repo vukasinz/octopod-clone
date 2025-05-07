@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4762427301777867984, guid: ed97f66650e9c304ba392239b86f4880, type: 3}
+      propertyPath: coyoteTime
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762427301777867984, guid: ed97f66650e9c304ba392239b86f4880, type: 3}
+      propertyPath: _dashingTime
+      value: 0.175
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
