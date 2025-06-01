@@ -10,6 +10,7 @@ TagManager:
   - checkpoints
   - traps
   - meduza
+  - Cerberus
   layers:
   - Default
   - TransparentFX

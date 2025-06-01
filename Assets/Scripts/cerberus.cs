@@ -11,33 +11,26 @@ public class cerberus : MonoBehaviour
     GameObject player;
     Animator anim;
     public GameObject throwables_cerberus;
-    bool attacking = false;
+    public bool attacking = false;
     private void Start()
     {
         anim = GetComponent<Animator>();
     }
     void Follow(float distance)
     {
-        if (Mathf.Abs(distance) < 30f && Mathf.Abs(distance) > 1f)
+        if (Mathf.Abs(distance) < 30f && Mathf.Abs(distance) > 1f && !attacking)
         {
             Vector2 currentPosition = transform.position;
             Vector2 targetPosition = player.transform.position;
             Vector2 newPosition = Vector2.MoveTowards(currentPosition, targetPosition, 10f * Time.deltaTime);
-            if (!attacking)
-            {
+         
                 transform.position = new Vector3(newPosition.x, transform.position.y, transform.position.z);
-                ResetAllBools();
-                anim.SetBool("walking", true);
-            }
-           
+
+            anim.Play("walk");
+
         }
     }
-    void ResetAllBools()
-    {
-        anim.SetBool("close_range_attack", false);
-        anim.SetBool("long_range_attack", false);
-        anim.SetBool("walking", false);
-    }
+
     void Shoot()
     {
         GameObject throwable = Instantiate(throwables_cerberus, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
@@ -47,44 +40,23 @@ public class cerberus : MonoBehaviour
         Camera.main.transform.DOComplete();
         Camera.main.transform.DOShakePosition(.4f, 0.55f, 20, 180f, false, true);
     }
-    void LongRangeAttack(float distance)
-    {
-        if (Mathf.Abs(distance) > 10f && Mathf.Abs(distance) < 15f && attacking == false)
-        {
 
-            StartCoroutine(longRangeCoroutine());
-
-        }
-
-    }
-    void ShortRangeAttack(float distance)
-    {
-        if ( Mathf.Abs(distance) < 1f && attacking == false)
-        {
-        
-            StartCoroutine(shortRangeCoroutine());
-        }
-      
-    }
-    IEnumerator shortRangeCoroutine()
+    IEnumerator ShortRangeAttack()
     {
         attacking = true;
-        ResetAllBools();
-       
-        anim.SetBool("close_range_attack",true);
-        yield return new WaitForSeconds(1f);
         Camera.main.transform.DOComplete();
         Camera.main.transform.DOShakePosition(.4f, 1f, 30, 180f, false, true);
-        attacking = false;
-    }
-    IEnumerator longRangeCoroutine()
-    {
-        attacking = true;
-        ResetAllBools();
-        
-        anim.SetBool("long_range_attack",true);
+        anim.Play("close_range_attack");
         yield return new WaitForSeconds(1.5f);
         attacking = false;
+    }
+    IEnumerator LongRangeAttack()
+    {
+        attacking = true;
+        anim.Play("long_range_attack");
+        yield return new WaitForSeconds(2f);
+        attacking = false;
+        Debug.Log("Zavrsen long range attack"); 
     }
     void Update()
     {
@@ -98,9 +70,20 @@ public class cerberus : MonoBehaviour
         else
             this.GetComponent<SpriteRenderer>().flipX = false;
 
-        Follow(distance);
-            ShortRangeAttack(distance);
-            LongRangeAttack(distance);
-
+        if (Mathf.Abs(distance) <= 1f && !attacking)
+        {
+            StartCoroutine(ShortRangeAttack());
+        }
+        else if (Mathf.Abs(distance) > 10f && Mathf.Abs(distance) < 15f && !attacking)
+        {
+            StartCoroutine(LongRangeAttack());
+        }
+        else if (Mathf.Abs(distance) > 1f && Mathf.Abs(distance) <= 10f && !attacking)
+        {
+            Follow(distance);
+        }
     }
+
+
+    
 }
