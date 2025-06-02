@@ -19,8 +19,9 @@ public class AttackState : State
     }
     public override State RunCurrentState()
     {
+        Flip();
         Vector2 distance = player.transform.position - cerberus.transform.position;
-        isInChaseRange = distance.magnitude > 1.5f; 
+        isInChaseRange = distance.magnitude > 2f; 
 
         if (isInChaseRange)
         {
