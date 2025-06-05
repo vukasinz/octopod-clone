@@ -14,8 +14,7 @@ public class StateManager : MonoBehaviour
     {
         
         currentState?.EnterState();
-        currentState.player = GameObject.FindGameObjectWithTag("Player");
-        currentState.cerberus = GameObject.FindGameObjectWithTag("Cerberus");
+  
     }
 
     private void RunStateMachine()

@@ -9,9 +9,11 @@ public class traps : MonoBehaviour
     GameObject last_player;
     GameObject player;
     public GameObject prvi_checkpoint;
+    GameObject cerberus;
     [SerializeField] public static Transform last_checkpoint;
     private void Start()
     {
+        cerberus = GameObject.FindGameObjectWithTag("Cerberus");
         last_checkpoint = prvi_checkpoint.transform;
         player = GameObject.FindGameObjectWithTag("Player");
         
@@ -79,6 +81,12 @@ public class traps : MonoBehaviour
         Destroy(last_player);
         yield return new WaitForSeconds(1f);
         player.GetComponent<player_mov>().enabled = true;
+        State[] states = cerberus.GetComponentsInChildren<State>();
+        foreach (State state in states)
+        {
+            print(state.GetType().Name);
+            state.EnterState();
+        }
 
     }
 

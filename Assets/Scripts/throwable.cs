@@ -6,7 +6,7 @@ public class throwable : MonoBehaviour
     GameObject player;
     Animator anim;
     public GameObject throwables_cerberus;
-    private void Start()
+    private void Update()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
@@ -15,7 +15,7 @@ public class throwable : MonoBehaviour
     {
         GameObject throwable = Instantiate(throwables_cerberus, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
         Rigidbody2D rb = throwable.GetComponent<Rigidbody2D>();
-        Destroy(throwable, 5f);
+        Destroy(throwable, 20f);
         Vector2 direction = (player.transform.position - throwable.transform.position).normalized;
         rb.linearVelocity = direction * 35f;
         Camera.main.transform.DOComplete();

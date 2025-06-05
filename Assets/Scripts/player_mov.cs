@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 using DG.Tweening;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class player_mov : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class player_mov : MonoBehaviour
     public bool isGrounded;
     public bool isWallSliding;
     public bool jumped = false;
+    [Header("Attack")]
+    public float damage = 10f;
+    public float attackCooldown = 1f;
+    private float lastAttackTime;
 
     [Header("Coyote Time")]
     public float coyoteTime = 0.2f;
@@ -43,10 +48,12 @@ public class player_mov : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         _trailRen = GetComponentInChildren<TrailRenderer>();
+        OnDrawGizmosSelected();
     }
 
     void Move()
     {
+       
         directionPar = direction;
 
         if (direction == 1)
@@ -92,8 +99,41 @@ public class player_mov : MonoBehaviour
         }
     }
 
+
+
+    void TryDamageBoss()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1.5f); // Adjust range
+
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("Cerberus"))
+            {
+                BossHealth boss = hit.GetComponent<BossHealth>();
+                if (boss != null)
+                {
+                    boss.TakeDamage(Random.Range(7, 20));
+                }
+            }
+        }
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 1.5f); // Visualize attack range
+    }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= lastAttackTime + attackCooldown)
+        {
+            TryDamageBoss();
+            lastAttackTime = Time.time;
+            float random = Random.Range(0, 2f);
+            if (random < 1f)
+                anim.SetTrigger("hit1");
+            else
+                anim.SetTrigger("hit2");
+        }
         // Raycast za detekciju tla
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1, groundLayer);
 
@@ -113,9 +153,6 @@ public class player_mov : MonoBehaviour
             jumped = false;
             if (!hit.collider.CompareTag("Platform"))
                 _canDash = true;
-
-            
-
         }
 
         WallSlide();

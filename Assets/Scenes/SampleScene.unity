@@ -8171,6 +8171,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &356351326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 356351327}
+  - component: {fileID: 356351328}
+  m_Layer: 0
+  m_Name: DeathState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &356351327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356351326}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 860052309}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &356351328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356351326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49dbc836675165b4ba85806982ca4baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cerberus: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &356360768
 GameObject:
   m_ObjectHideFlags: 0
@@ -67982,6 +68028,7 @@ Transform:
   - {fileID: 899527107}
   - {fileID: 1610452098}
   - {fileID: 370885701}
+  - {fileID: 356351327}
   m_Father: {fileID: 2122571593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &899527106
@@ -73212,6 +73259,7 @@ GameObject:
   - component: {fileID: 2122571597}
   - component: {fileID: 2122571598}
   - component: {fileID: 2122571599}
+  - component: {fileID: 2122571601}
   m_Layer: 0
   m_Name: cerberus_0
   m_TagString: Cerberus
@@ -73411,6 +73459,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwables_cerberus: {fileID: 1112175888882749227, guid: 9d3185802258ec34ca80d6e324c4f798, type: 3}
+--- !u!114 &2122571601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122571591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9fd26b786916948a75459fdb2b8eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  DeathState: {fileID: 356351328}
 --- !u!1001 &7857993641036381996
 PrefabInstance:
   m_ObjectHideFlags: 0

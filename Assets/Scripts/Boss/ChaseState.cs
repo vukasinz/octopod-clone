@@ -6,12 +6,14 @@ public class ChaseState : State
 {
     public AttackState attackState;
     public LongrangeAttackState longRangeAttackState;
+   
 
     public bool isInAttackRange;
     public bool isInLongAttackRange;
 
     public override State RunCurrentState()
     {
+        
         Flip();
         if (isFlipping)
         {
@@ -44,7 +46,10 @@ public class ChaseState : State
     }
     public override void ExitState()
     {
-
+        SetReferences(
+           GameObject.FindGameObjectWithTag("Player"),
+           GameObject.FindGameObjectWithTag("Cerberus")
+       );
         Debug.Log("Exiting Chase State");
     }
 
