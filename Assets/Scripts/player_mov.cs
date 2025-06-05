@@ -41,7 +41,7 @@ public class player_mov : MonoBehaviour
     public bool _canDash = true;
     private TrailRenderer _trailRen;
     GameObject wall_slide;
-
+   
     void Start()
     {
         wall_slide = GameObject.FindGameObjectWithTag("wall_slide");
@@ -81,6 +81,7 @@ public class player_mov : MonoBehaviour
 
     private IEnumerator StopDashing()
     {
+       
         yield return new WaitForSeconds(_dashingTime);
         _isDashing = false;
         _trailRen.emitting = false;

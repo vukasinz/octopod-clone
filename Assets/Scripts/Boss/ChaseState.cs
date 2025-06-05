@@ -22,7 +22,7 @@ public class ChaseState : State
 
         Rigidbody2D rb = cerberus.GetComponent<Rigidbody2D>();
         Vector2 target = new Vector2(player.transform.position.x, rb.position.y);
-        rb.MovePosition(Vector2.MoveTowards(rb.position, target, 5f * Time.fixedDeltaTime));
+        rb.MovePosition(Vector2.MoveTowards(rb.position, target, 6f * Time.fixedDeltaTime));
 
         Vector2 distance = player.transform.position - cerberus.transform.position;
         isInAttackRange = distance.magnitude < 2f;
