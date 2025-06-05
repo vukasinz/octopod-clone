@@ -73255,11 +73255,11 @@ GameObject:
   - component: {fileID: 2122571593}
   - component: {fileID: 2122571592}
   - component: {fileID: 2122571594}
+  - component: {fileID: 2122571601}
   - component: {fileID: 2122571600}
   - component: {fileID: 2122571597}
   - component: {fileID: 2122571598}
   - component: {fileID: 2122571599}
-  - component: {fileID: 2122571601}
   m_Layer: 0
   m_Name: cerberus_0
   m_TagString: Cerberus
@@ -73351,7 +73351,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 55102d438496de04fadc8eaff8bc7031, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -73399,7 +73399,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!61 &2122571599
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -73473,10 +73473,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   DeathState: {fileID: 356351328}
-  dashForce: 200
+  dashForce: 10
   dashCooldown: 2
   dashChance: 0.4
   triggerDistance: 3
+  dashDuration: 0.2
 --- !u!1001 &7857993641036381996
 PrefabInstance:
   m_ObjectHideFlags: 0
