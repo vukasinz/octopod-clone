@@ -48,7 +48,7 @@ public class player_mov : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         _trailRen = GetComponentInChildren<TrailRenderer>();
-        OnDrawGizmosSelected();
+    
     }
 
     void Move()
@@ -118,11 +118,7 @@ public class player_mov : MonoBehaviour
             }
         }
     }
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 1.5f); // Visualize attack range
-    }
+ 
     void Update()
     {
        /* if (Input.GetKeyDown(KeyCode.Space) && Time.time >= lastAttackTime + attackCooldown)
