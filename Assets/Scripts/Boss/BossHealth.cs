@@ -36,7 +36,7 @@ public class BossHealth : MonoBehaviour
         StateManager sm = GetComponent<StateManager>();
         if (sm != null)
         {
-            sm.currentState = DeathState;
+            sm.SwitchToTheNextState(DeathState);
             sm.currentState.EnterState();
         }
         else

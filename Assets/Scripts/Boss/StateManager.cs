@@ -16,7 +16,15 @@ public class StateManager : MonoBehaviour
         currentState?.EnterState();
   
     }
-
+    void FixedUpdate()
+    {
+     
+            if (currentState is ChaseState chase)
+            {
+                Rigidbody2D rb = chase.cerberus.GetComponent<Rigidbody2D>();
+                rb.MovePosition(Vector2.MoveTowards(rb.position, chase.target, 6f * Time.fixedDeltaTime));
+            }
+    }
     private void RunStateMachine()
     {
         State nextState = currentState?.RunCurrentState();
@@ -25,7 +33,7 @@ public class StateManager : MonoBehaviour
             SwitchToTheNextState(nextState);
         }
     }
-    private void SwitchToTheNextState(State nextState)
+    public void SwitchToTheNextState(State nextState)
     {
         currentState?.ExitState();
         currentState = nextState;

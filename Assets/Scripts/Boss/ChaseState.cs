@@ -6,27 +6,24 @@ public class ChaseState : State
 {
     public AttackState attackState;
     public LongrangeAttackState longRangeAttackState;
-   
+    [HideInInspector]public Vector2 target;
 
     public bool isInAttackRange;
     public bool isInLongAttackRange;
 
     public override State RunCurrentState()
     {
-        
+
         Flip();
         if (isFlipping)
-        {
-            return this; 
-        }
-
+            return this;
         Rigidbody2D rb = cerberus.GetComponent<Rigidbody2D>();
-        Vector2 target = new Vector2(player.transform.position.x, rb.position.y);
+        target = new Vector2(player.transform.position.x, rb.position.y);
         rb.MovePosition(Vector2.MoveTowards(rb.position, target, 6f * Time.fixedDeltaTime));
 
         Vector2 distance = player.transform.position - cerberus.transform.position;
         isInAttackRange = distance.magnitude < 2f;
-        isInLongAttackRange = distance.magnitude > 15f;
+        isInLongAttackRange = distance.magnitude > 20f;
 
         if (isInLongAttackRange)
             return longRangeAttackState;

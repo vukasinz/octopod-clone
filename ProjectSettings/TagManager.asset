@@ -11,6 +11,7 @@ TagManager:
   - traps
   - meduza
   - Cerberus
+  - hitbox
   layers:
   - Default
   - TransparentFX

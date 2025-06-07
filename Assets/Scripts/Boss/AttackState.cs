@@ -35,14 +35,17 @@ public class AttackState : State
     public override State RunCurrentState()
     {
         Flip();
+        if (isFlipping)
+            return this;
         Vector2 distance = player.transform.position - cerberus.transform.position;
         isInChaseRange = distance.magnitude > 2f; 
-        cerberus.GetComponent<Animator>().Play("close_range_attack");
-
         if (isInChaseRange && isDone())
         {
             return ChaseState;
         }
+       
+        cerberus.GetComponent<Animator>().Play("close_range_attack");
+
         return this;
     }
 }

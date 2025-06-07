@@ -125,7 +125,7 @@ public class player_mov : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= lastAttackTime + attackCooldown)
+       /* if (Input.GetKeyDown(KeyCode.Space) && Time.time >= lastAttackTime + attackCooldown)
         {
             TryDamageBoss();
             lastAttackTime = Time.time;
@@ -134,7 +134,7 @@ public class player_mov : MonoBehaviour
                 anim.SetTrigger("hit1");
             else
                 anim.SetTrigger("hit2");
-        }
+        }/*/
         // Raycast za detekciju tla
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1, groundLayer);
 

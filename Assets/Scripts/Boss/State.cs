@@ -21,16 +21,26 @@ public abstract class State : MonoBehaviour
     IEnumerator FlipCoroutine(bool flipX)
     {
         isFlipping = true;
-        cerberus.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        yield return new WaitForSeconds(0.25f);
-
+        float r = Random.Range(0.25f, 1.5f);
+        cerberus.GetComponent<Animator>().Play("idle");
+        yield return new WaitForSeconds(r/1.5f);
+        BoxCollider2D hitbox = GameObject.FindGameObjectWithTag("hitbox").GetComponent<BoxCollider2D>();
         BoxCollider2D col = cerberus.GetComponent<BoxCollider2D>();
+        hitbox.offset = new Vector2(-hitbox.offset.x, hitbox.offset.y);
         col.offset = new Vector2(-col.offset.x, col.offset.y);
         cerberus.GetComponent<SpriteRenderer>().flipX = flipX;
 
-        yield return new WaitForSeconds(0.25f);
-        cerberus.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        yield return new WaitForSeconds(r/1.5f);
+
+        StateManager sm = cerberus.GetComponent<StateManager>();
+        
+        ChaseState chaseState = cerberus.GetComponentInChildren<ChaseState>();
+        if (sm.currentState.GetType() != typeof(DeathState))
+        {
+            sm.SwitchToTheNextState(chaseState);
+        }
         isFlipping = false;
+        
     }
     public abstract State RunCurrentState();
     public virtual void EnterState() { }
