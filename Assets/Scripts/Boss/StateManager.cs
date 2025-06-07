@@ -8,7 +8,7 @@ public class StateManager : MonoBehaviour
     void Update()
     {
        
-        RunStateMachine();
+        
     }
     void Start()
     {
@@ -18,12 +18,10 @@ public class StateManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-     
-            if (currentState is ChaseState chase)
-            {
-                Rigidbody2D rb = chase.cerberus.GetComponent<Rigidbody2D>();
-                rb.MovePosition(Vector2.MoveTowards(rb.position, chase.target, 6f * Time.fixedDeltaTime));
-            }
+        RunStateMachine();
+       
+               
+            
     }
     private void RunStateMachine()
     {
