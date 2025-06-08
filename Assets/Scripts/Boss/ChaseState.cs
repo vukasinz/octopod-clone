@@ -5,18 +5,38 @@ using static UnityEngine.GraphicsBuffer;
 public class ChaseState : State
 {
     public AttackState attackState;
+    public DashState dashState;
     public LongrangeAttackState longRangeAttackState;
     [HideInInspector]public Vector2 target;
-
     public bool isInAttackRange;
     public bool isInLongAttackRange;
-
+    
+    public bool DashCheck()
+    {
+        if (isFlipping)
+            return false;
+        dashTimer -= Time.fixedDeltaTime;
+        if (dashTimer <= 0f)
+        {
+                dashTimer = 2f;
+            if (Random.Range(0, 100) < 30)
+                return true;      
+            
+            
+        }
+        return false;
+    }
     public override State RunCurrentState()
     {
-
-        Flip();
+        if(DashCheck())
+        {
+            return dashState;
+        }
+        
+            Flip();
         if (isFlipping)
             return this;
+        
         Rigidbody2D rb = cerberus.GetComponent<Rigidbody2D>();
         target = new Vector2(player.transform.position.x, rb.position.y);
         rb.MovePosition(Vector2.MoveTowards(rb.position, target, 8f * Time.fixedDeltaTime));
@@ -28,8 +48,8 @@ public class ChaseState : State
 
         Vector2 distance = player.transform.position - cerberus.transform.position;
         isInAttackRange = distance.magnitude < 2f;
-        isInLongAttackRange = distance.magnitude > 10f;
-
+        isInLongAttackRange = distance.magnitude > 15f;
+        
         if (isInLongAttackRange)
             return longRangeAttackState;
         if (isInAttackRange)
@@ -48,6 +68,7 @@ public class ChaseState : State
     }
     public override void ExitState()
     {
+        
         SetReferences(
            GameObject.FindGameObjectWithTag("Player"),
            GameObject.FindGameObjectWithTag("Cerberus")

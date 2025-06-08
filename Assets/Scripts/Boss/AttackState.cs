@@ -5,8 +5,8 @@ public class AttackState : State
     
     public State ChaseState;
     public bool isInChaseRange;
-    
 
+  
     public override void EnterState()
     {
         SetReferences(
@@ -34,9 +34,11 @@ public class AttackState : State
     }
     public override State RunCurrentState()
     {
-        Flip();
+        
         if (isFlipping)
             return this;
+        
+        Flip();
         Vector2 distance = player.transform.position - cerberus.transform.position;
         isInChaseRange = distance.magnitude > 2f; 
         if (isInChaseRange && isDone())

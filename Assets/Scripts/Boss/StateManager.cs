@@ -4,10 +4,11 @@ using UnityEngine;
 public class StateManager : MonoBehaviour
 {
     public State currentState;
+    public string stateName;
     
     void Update()
     {
-       
+        stateName = currentState.name;
         
     }
     void Start()
