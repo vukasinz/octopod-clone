@@ -21,12 +21,15 @@ public abstract class State : MonoBehaviour
     IEnumerator FlipCoroutine(bool flipX)
     {
         isFlipping = true;
-        float r = Random.Range(0.25f, 1.5f);
+        float r = Random.Range(0f, 1.5f);
         cerberus.GetComponent<Animator>().Play("idle");
+        cerberus.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+        GameObject.FindGameObjectWithTag("question_mark").GetComponent<Animator>().Play("question_mark", -1, 0f);
         yield return new WaitForSeconds(r/1.5f);
-        BoxCollider2D hitbox = GameObject.FindGameObjectWithTag("hitbox").GetComponent<BoxCollider2D>();
-        BoxCollider2D col = cerberus.GetComponent<BoxCollider2D>();
-        hitbox.offset = new Vector2(-hitbox.offset.x, hitbox.offset.y);
+        
+        CapsuleCollider2D col = cerberus.GetComponent<CapsuleCollider2D>();
+        GameObject hitbox = GameObject.FindGameObjectWithTag("hitbox");
+        hitbox.GetComponent<CapsuleCollider2D>().offset = new Vector2(-hitbox.GetComponent<CapsuleCollider2D>().offset.x, hitbox.GetComponent<CapsuleCollider2D>().offset.y);
         col.offset = new Vector2(-col.offset.x, col.offset.y);
         cerberus.GetComponent<SpriteRenderer>().flipX = flipX;
 

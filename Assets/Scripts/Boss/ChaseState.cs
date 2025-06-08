@@ -19,11 +19,16 @@ public class ChaseState : State
             return this;
         Rigidbody2D rb = cerberus.GetComponent<Rigidbody2D>();
         target = new Vector2(player.transform.position.x, rb.position.y);
-        rb.MovePosition(Vector2.MoveTowards(rb.position, target, 6f * Time.fixedDeltaTime));
+        rb.MovePosition(Vector2.MoveTowards(rb.position, target, 8f * Time.fixedDeltaTime));
+
+        float z = transform.rotation.eulerAngles.z;
+        if (z > 180) z -= 360;
+        z = Mathf.Clamp(z, -10f, 10f);
+        transform.rotation = Quaternion.Euler(0, 0, z);
 
         Vector2 distance = player.transform.position - cerberus.transform.position;
         isInAttackRange = distance.magnitude < 2f;
-        isInLongAttackRange = distance.magnitude > 20f;
+        isInLongAttackRange = distance.magnitude > 10f;
 
         if (isInLongAttackRange)
             return longRangeAttackState;

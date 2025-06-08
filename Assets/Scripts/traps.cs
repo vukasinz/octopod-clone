@@ -10,7 +10,7 @@ public class traps : MonoBehaviour
     GameObject player;
     public GameObject prvi_checkpoint;
     GameObject cerberus;
-    [SerializeField] public static Transform last_checkpoint;
+    public static Transform last_checkpoint;
     private void Start()
     {
         cerberus = GameObject.FindGameObjectWithTag("Cerberus");

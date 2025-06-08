@@ -12,6 +12,8 @@ TagManager:
   - meduza
   - Cerberus
   - hitbox
+  - hitboxPivot
+  - question_mark
   layers:
   - Default
   - TransparentFX

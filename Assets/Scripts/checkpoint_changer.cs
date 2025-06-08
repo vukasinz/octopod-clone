@@ -4,10 +4,11 @@ using UnityEngine;
 public class checkpoint_changer : MonoBehaviour
 {
     public Camera camera;
-    GameObject g;
+    public GameObject g;
+    public GameObject healthBar;
     public void Start()
     {
-        g = GameObject.FindGameObjectWithTag("Cerberus");
+      
         g.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -15,6 +16,7 @@ public class checkpoint_changer : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             traps.last_checkpoint = this.transform;
+            Debug.Log(this.transform);
             switch(traps.last_checkpoint.name)
             {
                 case "level 1":
@@ -45,11 +47,15 @@ public class checkpoint_changer : MonoBehaviour
                     camera.transform.position = new Vector3(265.38f, 12.87f, -10);
                     break;
                 case "level 10":
+                    if (g != null && g.activeSelf)
+                        g.SetActive(false);
                     camera.transform.position = new Vector3(296.98f, 6.2f, -10);
                     break;
-                case "bossfight":
-                    g.SetActive(true);
-                    camera.transform.position = new Vector3(328.81f, 6.2f, -10);
+                case "level 11":
+                    healthBar.SetActive(true);
+                    camera.transform.position = new Vector3(328.8f, 6.2f, -10);
+                    if (g != null)
+                        g.SetActive(true);
                     break;
                 default:
                     Debug.Log("Unknown checkpoint");
