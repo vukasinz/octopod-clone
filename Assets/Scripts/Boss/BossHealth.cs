@@ -8,7 +8,7 @@ public class BossHealth : MonoBehaviour
     public float damageCooldown = 2f;
     public State DeathState;
     public Slider healthBar;
-
+    public GameObject closeSignal;
     private bool canTakeDamage = true;
     private Rigidbody2D rb;
     private Transform player;
@@ -24,7 +24,20 @@ public class BossHealth : MonoBehaviour
         if (healthBar != null)
             healthBar.value = health;
     }
-
+    public void DoDamage()
+    {
+        if (closeSignal.GetComponent<CloseRangeSignal>().playerInside)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().TakeDamage(Random.Range(25f, 40f));
+        }
+    }
+    public void DashDamage()
+    {
+        if (closeSignal.GetComponent<CloseRangeSignal>().playerInside)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().TakeDamage(200f);
+        }
+    }
     public void TakeDamage(float amount)
     {
         if (!canTakeDamage) return;

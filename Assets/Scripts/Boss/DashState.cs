@@ -4,13 +4,15 @@ using UnityEngine;
 public class DashState : State
 {
     public ChaseState chaseState;
-    private Animator marks;
+    public Animator marks;
     public bool dashed = false;
     bool change = false;
     bool dashing = false;
     Vector2 dashDir;
     public override void EnterState()
     {
+        print("Entering Dash State");
+
         change = false;
         dashing = false;
         // marks.enabled = true;
@@ -25,22 +27,24 @@ public class DashState : State
     IEnumerator Dash()
     {
         dashing = true;
-        //marks.Play("exclamation_mark");
+        marks.Play("exclamation_point", -1, 0f);
         yield return new WaitForSeconds(1f);
         Rigidbody2D rb = cerberus.GetComponent<Rigidbody2D>();
         GameObject.FindGameObjectWithTag("dashTrail").GetComponent<ParticleSystem>().Play();
-        rb.AddForce(dashDir * 25000f, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.25f);
+        dashDir.y += 0.00005f;
+        rb.AddForce(dashDir * 30000f, ForceMode2D.Impulse);
         dashing = false;
-        //cerberus.GetComponent<Animator>().Play("dash");
+        yield return new WaitForSeconds(0.25f);
+        cerberus.GetComponent<Animator>().Play("dash",-1,0);
     }
     IEnumerator StopDash()
     {
-        dashed = false;
+       
+        marks.Play("confusion_mark");
         yield return new WaitForSeconds(0.2f);
-        //marks.Play("stars");
+        yield return new WaitForSeconds(0.9f);
         cerberus.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(0.9f);
         change = true;
 
         
@@ -49,8 +53,12 @@ public class DashState : State
     {
         //kad udari dashed = true pa ce se ovo uraditi, to ce se gledati u alternativnoj skripti, gde se trazi udarac u zid/igraca.
         //mozda najbolje u state manageru, jer ocu i long range da pokrijem!
-        if(dashed == true && dashing == false)
+        if (dashed == true && dashing == false)
+        {
+            dashed = false;
             StartCoroutine("StopDash");
+
+        }
         if (change)
         {
             
@@ -60,6 +68,7 @@ public class DashState : State
     }
     public override void ExitState()
     {
+        print("Exiting Dash State");
         change = false;
         dashing = false;
         //marks.enabled = false;

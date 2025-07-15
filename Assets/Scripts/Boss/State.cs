@@ -5,7 +5,7 @@ public abstract class State : MonoBehaviour
 {
     [HideInInspector] public GameObject cerberus;
     public float dashTimer = 2f;
-
+    
     [HideInInspector] public GameObject player;
     protected bool isFlipping = false;
     public void Flip()
@@ -24,12 +24,14 @@ public abstract class State : MonoBehaviour
         StateManager sm = cerberus.GetComponent<StateManager>();
         if (sm.stateName != "DashState")
         {
+            GameObject.FindGameObjectWithTag("question_mark").GetComponent<Animator>().Play("question_mark", -1, 0f);
             isFlipping = true;
             float r = Random.Range(0f, 1.5f);
             cerberus.GetComponent<Animator>().Play("idle");
             cerberus.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-            GameObject.FindGameObjectWithTag("question_mark").GetComponent<Animator>().Play("question_mark", -1, 0f);
             yield return new WaitForSeconds(r / 1.5f);
+            GameObject cr = GameObject.FindGameObjectWithTag("close_range");
+            cr.GetComponent<CircleCollider2D>().offset = new Vector2(-cr.GetComponent<CircleCollider2D>().offset.x, cr.GetComponent<CircleCollider2D>().offset.y);
 
             CapsuleCollider2D col = cerberus.GetComponent<CapsuleCollider2D>();
             GameObject hitbox = GameObject.FindGameObjectWithTag("hitbox");
@@ -37,7 +39,7 @@ public abstract class State : MonoBehaviour
             col.offset = new Vector2(-col.offset.x, col.offset.y);
             cerberus.GetComponent<SpriteRenderer>().flipX = flipX;
 
-            yield return new WaitForSeconds(r / 1.5f);
+            yield return new WaitForSeconds(r / 2f);
 
 
             ChaseState chaseState = cerberus.GetComponentInChildren<ChaseState>();
@@ -46,7 +48,7 @@ public abstract class State : MonoBehaviour
                 sm.SwitchToTheNextState(chaseState);
             }
             float dir = flipX ? 1f : -1f;
-            cerberus.transform.position = new Vector2(cerberus.transform.position.x + (dir*1.5f), cerberus.transform.position.y);
+            cerberus.transform.position = new Vector2(cerberus.transform.position.x + (dir*0.25f), cerberus.transform.position.y);
             isFlipping = false;
         }
     }

@@ -6,6 +6,7 @@ public class checkpoint_changer : MonoBehaviour
     public Camera camera;
     public GameObject g;
     public GameObject healthBar;
+    public GameObject playerHealthBar;
     public void Start()
     {
       
@@ -53,6 +54,8 @@ public class checkpoint_changer : MonoBehaviour
                     break;
                 case "level 11":
                     healthBar.SetActive(true);
+                    playerHealthBar.SetActive(true);
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().enabled = true;
                     camera.transform.position = new Vector3(328.8f, 6.2f, -10);
                     if (g != null)
                         g.SetActive(true);

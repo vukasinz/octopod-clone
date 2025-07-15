@@ -64,7 +64,7 @@ public class traps : MonoBehaviour
 
         }
     }
-    IEnumerator SpawnAnotherPlayer()
+    public IEnumerator SpawnAnotherPlayer()
     {
         GameObject.FindGameObjectWithTag("wall_slide").GetComponent<wall_slide>().isWalled = false;
         
@@ -81,6 +81,8 @@ public class traps : MonoBehaviour
         Destroy(last_player);
         yield return new WaitForSeconds(1f);
         player.GetComponent<player_mov>().enabled = true;
+        GameObject.FindGameObjectWithTag("wall_slide").GetComponent<wall_slide>().isWalled = false;
+        player.GetComponent<player_mov>().isWallSliding = false;
         State[] states = cerberus.GetComponentsInChildren<State>();
         foreach (State state in states)
         {
