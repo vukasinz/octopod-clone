@@ -12,13 +12,16 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         traps = GameObject.FindGameObjectWithTag("traps");
-        healthBar = GameObject.FindGameObjectWithTag("health_bar").GetComponent<Slider>();
+      
+      
+         
+        
         cerberus = GameObject.FindGameObjectWithTag("Cerberus");
     }
     public void TakeDamage(float amount)
     {
         hp -= amount;
-   
+        healthBar = GameObject.FindGameObjectWithTag("health_bar").GetComponent<Slider>();
         StartCoroutine(FlashColor(Color.gray));
     }
     IEnumerator FlashColor(Color flashColor, float duration = 0.1f)
@@ -32,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (healthBar != null)
         {
             healthBar.value = hp;
